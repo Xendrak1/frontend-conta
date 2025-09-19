@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
     // ❌ Ignora los errores de ESLint en build
     ignoreDuringBuilds: true,
   },
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
   /* config options here */
 };
 

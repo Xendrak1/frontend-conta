@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: next-conta
+metadata:
+  template: minimal
+
+# Definición de servicios
+services:
+  next-conta:
+    project: ./
+    host: staticwebapp
+    language: js
+    build:
+      commands:
+        - npm ci
+        - npm run build
+    dist: out
+
+# Configuración de infraestructura
+infra:
+  provider: bicep
+  path: infra
+  module: main
+
+# Variables de pipeline (opcional)
+pipeline:
+  providers:
+    - azdo
+    - github
