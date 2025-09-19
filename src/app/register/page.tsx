@@ -122,7 +122,7 @@ export default function RegisterPage() {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Nombre de Usuario
+                Email
               </label>
               <input
                 id="email"

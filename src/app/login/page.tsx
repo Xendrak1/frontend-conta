@@ -38,7 +38,6 @@ export default function LoginPage() {
 
       if (response.ok) {
         const result = await response.json();
-        console.log('Login exitoso:', result);
         
         // Usar el hook de autenticación para guardar el token y datos del usuario
         if (result.access) {

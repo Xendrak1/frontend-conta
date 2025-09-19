@@ -24,13 +24,14 @@ export function useEmpresa() {
         setLoading(false);
         return;
       }
-      
+      console.log(token)
       const response = await fetch('http://127.0.0.1:8000/empresas/', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
+        
       });
       
       if (response.ok) {

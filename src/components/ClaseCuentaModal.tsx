@@ -1,66 +1,73 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-interface Empresa {
-  id: string;
+interface ClaseCuenta {
+  codigo: string;
   nombre: string;
-  usuario: string;
 }
 
-interface EmpresaModalProps {
+interface ClaseCuentaModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onEmpresaCreated: () => void;
 }
 
-export default function EmpresaModal({ isOpen, onClose, onEmpresaCreated }: EmpresaModalProps) {
-  const [formData, setFormData] = useState({
-    nombre: ''
+export default function ClaseCuentaModal({
+  isOpen,
+  onClose,
+}: ClaseCuentaModalProps) {
+  const [formData, setFormData] = useState<ClaseCuenta>({
+    codigo: "",
+    nombre: "",
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-
+    setError("");
+    console.log(formData);
     try {
-      
-      const response = await fetch('http://127.0.0.1:8000/empresas/', {
-        method: 'POST',
+      console.log("Body que se enviará:", JSON.stringify(formData));
+      const response = await fetch("http://127.0.0.1:8000/clase_cuenta/", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(formData),
       });
       
+
       if (response.ok) {
         const result = await response.json();
-        console.log('Empresa creada exitosamente:', result);
-        onEmpresaCreated();
+
         onClose();
       } else {
         try {
           const errorData = await response.json();
-          setError(errorData.message || 'Error al crear la empresa. Inténtalo de nuevo.');
+          setError(
+            errorData.message ||
+              "Error al crear la Clase cuenta. Inténtalo de nuevo."
+          );
         } catch (parseError) {
-          console.error('Error parseando respuesta:', parseError);
-          setError(`Error del servidor (${response.status}): ${response.statusText}`);
+          console.error("Error parseando respuesta:", parseError);
+          setError(
+            `Error del servidor (${response.status}): ${response.statusText}`
+          );
         }
       }
     } catch (err) {
-      console.error('Error al crear empresa:', err);
-      setError('Error de conexión. Verifica que el servidor esté funcionando.');
+      console.error("Error al crear clase cuent:", err);
+      setError("Error de conexión. Verifica que el servidor esté funcionando.");
     } finally {
       setLoading(false);
     }
@@ -73,16 +80,25 @@ export default function EmpresaModal({ isOpen, onClose, onEmpresaCreated }: Empr
       <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
         <div className="mt-3">
           <h3 className="text-lg font-medium text-gray-900 mb-4">
-            Crear Empresa
+            Crear Clase de Cuenta
           </h3>
-          <p className="text-sm text-gray-600 mb-4">
-            Para continuar, necesitas crear una empresa asociada a tu cuenta.
-          </p>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                Nombre de la Empresa
+                Codigo
+              </label>
+              <input
+                type="text"
+                name="codigo"
+                value={formData.codigo}
+                onChange={handleChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Codigo de la Clase de Cuenta"
+                required
+              />
+              <label className="block text-sm font-medium text-gray-700">
+                Nombre
               </label>
               <input
                 type="text"
@@ -90,16 +106,12 @@ export default function EmpresaModal({ isOpen, onClose, onEmpresaCreated }: Empr
                 value={formData.nombre}
                 onChange={handleChange}
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Nombre de tu empresa"
+                placeholder="Nombre de la Clase de Cuenta"
                 required
               />
             </div>
 
-            {error && (
-              <div className="text-red-600 text-sm">
-                {error}
-              </div>
-            )}
+            {error && <div className="text-red-600 text-sm">{error}</div>}
 
             <div className="flex justify-end space-x-3 pt-4">
               <button
@@ -114,7 +126,7 @@ export default function EmpresaModal({ isOpen, onClose, onEmpresaCreated }: Empr
                 disabled={loading}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? 'Creando...' : 'Crear Empresa'}
+                {loading ? "Creando..." : "Crear Clase de Cuenta"}
               </button>
             </div>
           </form>
