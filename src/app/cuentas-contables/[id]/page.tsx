@@ -6,13 +6,6 @@ import { useAuth } from "../../../hooks/useAuth";
 import ProtectedRoute from "../../../components/ProtectedRoute";
 import Link from "next/link";
 
-// Función para generar parámetros estáticos (requerida para exportación estática)
-export async function generateStaticParams() {
-  // Para exportación estática, retornamos un array vacío
-  // En producción, podrías generar IDs conocidos aquí
-  return [];
-}
-
 // Interfaces (puedes moverlas a un archivo compartido si las usas en otros lugares)
 interface CuentaContable {
   id: string;
