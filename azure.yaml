@@ -14,7 +14,7 @@ services:
       commands:
         - npm ci
         - npm run build
-    dist: out
+    dist: .next
 
 # Configuración de infraestructura
 infra:

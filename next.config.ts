@@ -5,8 +5,9 @@ const nextConfig: NextConfig = {
     // ❌ Ignora los errores de ESLint en build
     ignoreDuringBuilds: true,
   },
-  output: 'export',
-  trailingSlash: true,
+  // Comentamos temporalmente la exportación estática para que funcione con rutas dinámicas
+  // output: 'export',
+  // trailingSlash: true,
   images: {
     unoptimized: true,
   },
