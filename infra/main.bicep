@@ -7,7 +7,7 @@ param environmentName string
 
 @minLength(1)
 @description('Ubicación primaria para todos los recursos')
-param location string = 'Brazil South'
+param location string = 'West US 2'
 
 @description('Nombre del grupo de recursos existente')
 param resourceGroupName string = 'contabilidadwebapp_group'
