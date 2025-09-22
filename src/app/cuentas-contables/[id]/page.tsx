@@ -48,7 +48,7 @@ export default function CuentaDetallePage() {
 
           // 1. Obtener detalles de la cuenta
           const cuentaResponse = await fetch(
-            `http://127.0.0.1:8000/cuentas/${id}/`,
+            `${process.env.NEXT_PUBLIC_API_URL}/cuentas/${id}/`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }
@@ -62,7 +62,7 @@ export default function CuentaDetallePage() {
           // Si tu endpoint es diferente, ajústalo aquí.
 
           const movimientosResponse = await fetch(
-            `http://127.0.0.1:8000/cuentas/${id}/movimientos/`,
+            `${process.env.NEXT_PUBLIC_API_URL}/cuentas/${id}/movimientos/`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }

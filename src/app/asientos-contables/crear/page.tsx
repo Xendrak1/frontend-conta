@@ -54,7 +54,7 @@ export default function CrearAsientoPage() {
     setLoadingCuentas(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://127.0.0.1:8000/cuentas/', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/cuentas/', {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (!response.ok) {
@@ -152,7 +152,7 @@ export default function CrearAsientoPage() {
     console.log(payload)
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://127.0.0.1:8000/asiento_contable/', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/asiento_contable/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(payload),

@@ -25,7 +25,7 @@ export function useEmpresa() {
         return;
       }
       console.log(token)
-      const response = await fetch('http://127.0.0.1:8000/empresas/', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/empresas/', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -63,7 +63,7 @@ export function useEmpresa() {
         throw new Error('No hay token de autenticación');
       }
 
-      const response = await fetch('http://127.0.0.1:8000/empresas/', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/empresas/', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -71,7 +71,7 @@ export function useAuth() {
     setUser(null);
     
     // Intentar hacer logout en el backend (opcional)
-    fetch('http://127.0.0.1:8000/auth/logout/', {
+    fetch('${process.env.NEXT_PUBLIC_API_URL}/auth/logout/', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,

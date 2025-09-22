@@ -37,7 +37,7 @@ export default function ClaseCuentaModal({
     console.log(formData);
     try {
       console.log("Body que se enviará:", JSON.stringify(formData));
-      const response = await fetch("http://127.0.0.1:8000/clase_cuenta/", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clase_cuenta/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

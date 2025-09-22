@@ -35,7 +35,7 @@ export default function EmpresaModal({ isOpen, onClose, onEmpresaCreated }: Empr
 
     try {
       
-      const response = await fetch('http://127.0.0.1:8000/empresas/', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/empresas/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

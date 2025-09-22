@@ -33,7 +33,7 @@ export default function AsientosContablesPage() {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://127.0.0.1:8000/asiento_contable/", {
+      const response = await fetch("${process.env.NEXT_PUBLIC_API_URL}/asiento_contable/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -68,7 +68,7 @@ export default function AsientosContablesPage() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://127.0.0.1:8000/asiento_contable/${id}/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/asiento_contable/${id}/`,
         {
           method: "DELETE",
           headers: {
