@@ -5,8 +5,8 @@ const nextConfig: NextConfig = {
     // ❌ Ignora los errores de ESLint en build
     ignoreDuringBuilds: true,
   },
-  // Comentamos temporalmente la exportación estática para que funcione con rutas dinámicas
-  // output: 'export',
+  // Despliegue en App Service usando runtime standalone (node server.js)
+  output: 'standalone',
   // trailingSlash: true,
   images: {
     unoptimized: true,
