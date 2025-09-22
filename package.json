@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "start:azure": "next start -p $PORT",
     "postinstall": "npm run build",
     "lint": "eslint"
   },
+  "engines": { "node": ">=20" },
   "dependencies": {
     "next": "15.5.3",
     "react": "19.1.0",
